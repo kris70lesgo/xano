@@ -50,9 +50,9 @@ const Navbar: React.FC = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-6">
-          <a href="#" className="text-base font-bold text-dark hover:text-primary transition-colors">Log in</a>
-          <a href="#pricing" className="bg-dark text-white text-base font-bold px-6 py-3 rounded-xl hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-gray-200">
-            Signup
+          <a href="/dashboard" className="text-base font-bold text-dark hover:text-primary transition-colors">Log in</a>
+          <a href="/dashboard" className="bg-dark text-white text-base font-bold px-6 py-3 rounded-xl hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-gray-200">
+            Get Started
           </a>
         </div>
 
@@ -78,8 +78,8 @@ const Navbar: React.FC = () => {
                </a>
             ))}
             <div className="flex flex-col gap-4 mt-8 w-64 px-6">
-                <button className="w-full py-4 text-dark font-bold border-2 border-dark rounded-xl hover:bg-dark hover:text-white transition-colors">Log in</button>
-                <a href="#pricing" onClick={() => setIsOpen(false)} className="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-red-200 hover:shadow-xl transition-all text-center">Get Started</a>
+                <a href="/dashboard" className="w-full py-4 text-dark font-bold border-2 border-dark rounded-xl hover:bg-dark hover:text-white transition-colors text-center">Log in</a>
+                <a href="/dashboard" onClick={() => setIsOpen(false)} className="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-red-200 hover:shadow-xl transition-all text-center">Get Started</a>
             </div>
         </div>
       </div>

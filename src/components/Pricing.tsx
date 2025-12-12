@@ -22,7 +22,7 @@ const Pricing: React.FC = () => {
                     <div className="text-xl font-bold text-gray-500 mb-4">Starter</div>
                     <div className="text-5xl font-bold text-dark mb-8 tracking-tight">$29<span className="text-xl text-gray-400 font-normal">/mo</span></div>
                     <p className="text-gray-600 mb-10 text-base leading-relaxed">Perfect for solo contractors just getting started.</p>
-                    <button className="w-full py-4 border-2 border-dark rounded-xl font-bold text-dark group-hover:bg-dark group-hover:text-white transition-all mb-10">Get Started</button>
+                    <a href="/dashboard" className="block w-full py-4 border-2 border-dark rounded-xl font-bold text-dark group-hover:bg-dark group-hover:text-white transition-all mb-10 text-center">Get Started</a>
                     <div className="space-y-4">
                         {['Up to 10 RFQs/month', 'AI Job Parsing', 'Pricing Suggestions', 'Email Support'].map(feat => (
                             <div key={feat} className="flex items-center gap-4 text-gray-700">
@@ -43,7 +43,7 @@ const Pricing: React.FC = () => {
                     <div className="text-xl font-bold text-primary mb-4">Growth</div>
                     <div className="text-5xl font-bold text-dark mb-8 tracking-tight">$79<span className="text-xl text-gray-400 font-normal">/mo</span></div>
                     <p className="text-gray-600 mb-10 text-base leading-relaxed">For growing contractors handling 50+ RFQs monthly.</p>
-                    <button className="w-full py-4 bg-primary text-white rounded-xl font-bold hover:bg-red-500 transition-all hover:scale-105 active:scale-95 mb-10 shadow-lg shadow-red-200">Get Started</button>
+                    <a href="/dashboard" className="block w-full py-4 bg-primary text-white rounded-xl font-bold hover:bg-red-500 transition-all hover:scale-105 active:scale-95 mb-10 shadow-lg shadow-red-200 text-center">Get Started</a>
                     <div className="space-y-4">
                         {['Unlimited RFQs', 'Advanced AI Analysis', 'Custom Pricing Rules', 'Priority Support', 'Team Collaboration'].map(feat => (
                             <div key={feat} className="flex items-center gap-4 text-dark font-medium">

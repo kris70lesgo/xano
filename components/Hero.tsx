@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
            <FreeArrow />
         </div>
 
-        <a href="#pricing" className="inline-block relative bg-primary text-white font-bold text-lg px-12 py-5 rounded-2xl shadow-[0_20px_40px_-15px_rgba(255,107,107,0.5)] transition-all hover:scale-110 hover:-translate-y-2 active:scale-95 overflow-hidden">
+        <a href="/dashboard" className="inline-block relative bg-primary text-white font-bold text-lg px-12 py-5 rounded-2xl shadow-[0_20px_40px_-15px_rgba(255,107,107,0.5)] transition-all hover:scale-110 hover:-translate-y-2 active:scale-95 overflow-hidden">
             <span className="relative z-10">Get Started Now</span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-150%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
         </a>
