@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast, Toaster } from 'sonner';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import DashboardMetrics from '../../components/dashboard/DashboardMetrics';
 import PipelineBreakdown from '../../components/dashboard/PipelineBreakdown';
@@ -43,16 +45,36 @@ export default function DashboardPage() {
     loadData();
   }, []);
 
+  const router = useRouter();
+
   const handleOpen = (id: string) => {
+    // Navigate to RFQ details (mock)
     console.log('Open RFQ:', id);
+    router.push(`/rfqs/${id}`);
   };
 
   const handleGenerate = (id: string) => {
-    console.log('Generate Proposal:', id);
+    toast.promise(
+      new Promise((resolve) => setTimeout(resolve, 1500)),
+      {
+        loading: `Generating proposal for RFQ #${id}...`,
+        success: () => {
+          router.push(`/proposals/new?rfq=${id}`);
+          return 'Proposal draft created!';
+        },
+        error: 'Failed to generate proposal'
+      }
+    );
   };
 
   const handleDownload = (id: string) => {
-    console.log('Download:', id);
+    toast.success(`Downloading files for RFQ #${id}`);
+  };
+
+  const handleNewRFQ = () => {
+    // Navigate to a new RFQ creation page or open a modal
+    // For now, let's assume we have a create page
+    router.push('/rfqs/new');
   };
 
   if (loading) {
@@ -73,7 +95,11 @@ export default function DashboardPage() {
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-dark mb-2">Dashboard</h1>
           <p className="text-gray-500">Welcome back, John. Here's what's happening today.</p>
         </div>
-        <Button variant="primary" className="hidden md:inline-flex shadow-lg shadow-primary/30">
+        <Button
+          variant="primary"
+          className="hidden md:inline-flex shadow-lg shadow-primary/30"
+          onClick={handleNewRFQ}
+        >
           <Plus className="w-5 h-5 mr-2" />
           New RFQ
         </Button>

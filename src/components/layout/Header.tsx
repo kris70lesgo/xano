@@ -15,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   const navLinks = [
     { name: 'Dashboard', href: '/dashboard' },
     { name: 'Proposals', href: '/proposals' },
+    { name: 'Calendar', href: '/calendar' },
     { name: 'Pricing Engine', href: '/pricing' },
     { name: 'Settings', href: '/settings' },
   ];
@@ -36,8 +37,8 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                 key={link.name}
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${pathname === link.href
-                    ? 'text-primary'
-                    : 'text-gray-600 hover:text-dark'
+                  ? 'text-primary'
+                  : 'text-gray-600 hover:text-dark'
                   }`}
               >
                 {link.name}

@@ -1,7 +1,11 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
   "/page": "app/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/rfqs/[id]/page": "app/rfqs/[id]/page.js",
+  "/proposals/new/page": "app/proposals/new/page.js",
+  "/proposals/[id]/edit/page": "app/proposals/[id]/edit/page.js",
+  "/calendar/page": "app/calendar/page.js",
+  "/pricing/page": "app/pricing/page.js",
   "/proposals/page": "app/proposals/page.js",
   "/settings/page": "app/settings/page.js"
 }
