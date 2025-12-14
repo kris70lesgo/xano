@@ -17,7 +17,7 @@ import { revalidatePath } from 'next/cache';
 
 // Mock user data
 let mockUser: User = {
-    id: 1,
+    id: 'mock-user-1',
     name: 'John Contractor',
     email: 'john@example.com',
     created_at: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString(), // 90 days ago

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Card from '../ui/Card';
-import { TrendingUp, DollarSign, Clock, Target, Sparkles, Send } from 'lucide-react';
+import { TrendingUp, DollarSign, Clock, Target } from 'lucide-react';
 
 interface MetricCardProps {
   title: string;
@@ -44,7 +44,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
           </div>
         )}
       </div>
-
+      
       <div>
         <div className="text-3xl font-bold text-dark mb-1">{value}</div>
         <div className="text-sm font-semibold text-gray-500 mb-1">{title}</div>
@@ -58,10 +58,10 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
 interface DashboardMetricsProps {
   stats: {
-    rfqs_received: number;
-    ai_parsed: number;
-    proposals_sent: number;
     win_rate: number;
+    revenue_this_month: number;
+    time_saved_hours: number;
+    proposals_sent: number;
   };
 }
 
@@ -69,35 +69,38 @@ const DashboardMetrics: React.FC<DashboardMetricsProps> = ({ stats }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <MetricCard
-        title="RFQs Received"
-        value={stats.rfqs_received}
-        icon={<Clock className="w-5 h-5" />}
-        color="blue"
-        trend={{ value: 12, isPositive: true }}
+        title="Win Rate"
+        value={`${stats.win_rate}%`}
+        subtitle="Last 30 days"
+        icon={<Target className="w-6 h-6" />}
+        color="primary"
+        trend={{ value: 5.2, isPositive: true }}
       />
-
+      
       <MetricCard
-        title="AI-Parsed Successfully"
-        value={stats.ai_parsed}
-        icon={<Sparkles className="w-5 h-5" />}
+        title="Revenue This Month"
+        value={`$${stats.revenue_this_month.toLocaleString()}`}
+        subtitle="Proposals won"
+        icon={<DollarSign className="w-6 h-6" />}
         color="green"
-        trend={{ value: 15, isPositive: true }}
+        trend={{ value: 12.5, isPositive: true }}
       />
-
+      
+      <MetricCard
+        title="Time Saved"
+        value={`${stats.time_saved_hours}h`}
+        subtitle="This week"
+        icon={<Clock className="w-6 h-6" />}
+        color="blue"
+      />
+      
       <MetricCard
         title="Proposals Sent"
         value={stats.proposals_sent}
-        icon={<Send className="w-5 h-5" />}
+        subtitle="This month"
+        icon={<TrendingUp className="w-6 h-6" />}
         color="orange"
-        trend={{ value: 5, isPositive: false }}
-      />
-
-      <MetricCard
-        title="Win Rate"
-        value={`${stats.win_rate}%`}
-        icon={<Target className="w-5 h-5" />}
-        color="primary"
-        trend={{ value: 2.1, isPositive: true }}
+        trend={{ value: 8.1, isPositive: true }}
       />
     </div>
   );

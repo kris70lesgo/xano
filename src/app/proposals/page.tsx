@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import Card from '../../components/ui/Card';
 import Badge from '../../components/ui/Badge';
@@ -10,10 +9,11 @@ import Input from '../../components/ui/Input';
 import { Search, Filter, FileText, Download, Eye, Check, X } from 'lucide-react';
 
 export default function ProposalsPage() {
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [proposals, setProposals] = useState([
+
+  // Mock proposals data
+  const proposals = [
     {
       id: '1',
       client_name: 'Sarah Johnson',
@@ -41,26 +41,7 @@ export default function ProposalsPage() {
       sent_at: '2024-12-08',
       viewed_at: '2024-12-09',
     },
-  ]);
-
-  const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this proposal?')) {
-      setProposals(prev => prev.filter(p => p.id !== id));
-    }
-  };
-
-  const handleMarkWon = (id: string) => {
-    setProposals(prev => prev.map(p =>
-      p.id === id ? { ...p, status: 'accepted' } : p
-    ));
-    alert('Great job! Proposal marked as won.');
-  };
-
-  const handleMarkLost = (id: string) => {
-    setProposals(prev => prev.map(p =>
-      p.id === id ? { ...p, status: 'rejected' } : p
-    ));
-  };
+  ];
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -78,13 +59,6 @@ export default function ProposalsPage() {
         return <Badge variant="default">{status}</Badge>;
     }
   };
-
-  const filteredProposals = proposals.filter(p => {
-    const matchesSearch = p.client_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.project_type.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = filterStatus === 'all' || p.status === filterStatus;
-    return matchesSearch && matchesStatus;
-  });
 
   return (
     <DashboardLayout>
@@ -127,7 +101,7 @@ export default function ProposalsPage() {
 
       {/* Proposals List */}
       <div className="space-y-4">
-        {filteredProposals.map((proposal) => (
+        {proposals.map((proposal) => (
           <Card key={proposal.id} className="p-6" hover>
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
@@ -170,18 +144,10 @@ export default function ProposalsPage() {
             {/* Actions */}
             {proposal.status === 'draft' && (
               <div className="flex gap-3 mt-4">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={() => router.push(`/proposals/${proposal.id}/edit`)}
-                >
+                <Button variant="primary" size="sm" className="flex-1">
                   Continue Editing
                 </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleDelete(proposal.id)}
-                >
+                <Button variant="outline" size="sm">
                   Delete
                 </Button>
               </div>
@@ -189,19 +155,11 @@ export default function ProposalsPage() {
 
             {proposal.status === 'sent' && (
               <div className="flex gap-3 mt-4">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={() => handleMarkWon(proposal.id)}
-                >
+                <Button variant="primary" size="sm">
                   <Check className="w-4 h-4 mr-2" />
                   Mark as Won
                 </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleMarkLost(proposal.id)}
-                >
+                <Button variant="outline" size="sm">
                   <X className="w-4 h-4 mr-2" />
                   Mark as Lost
                 </Button>
@@ -212,12 +170,12 @@ export default function ProposalsPage() {
       </div>
 
       {/* Empty State */}
-      {filteredProposals.length === 0 && (
+      {proposals.length === 0 && (
         <Card className="p-12 text-center">
           <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-dark mb-2">No proposals found</h3>
-          <p className="text-gray-600 mb-6">Try adjusting your filters</p>
-          <Button variant="primary">Clear Filters</Button>
+          <h3 className="text-xl font-bold text-dark mb-2">No proposals yet</h3>
+          <p className="text-gray-600 mb-6">Start by processing your first RFQ</p>
+          <Button variant="primary">Go to Dashboard</Button>
         </Card>
       )}
     </DashboardLayout>

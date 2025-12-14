@@ -38,6 +38,7 @@ const mockProposals: Proposal[] = [
                 line_items: [],
                 subtotal: 175000,
                 total: 175000,
+                currency: 'USD',
             },
             terms_and_conditions: [],
         },
@@ -65,6 +66,7 @@ const mockProposals: Proposal[] = [
                 line_items: [],
                 subtotal: 385000,
                 total: 385000,
+                currency: 'USD',
             },
             terms_and_conditions: [],
         },
@@ -92,6 +94,7 @@ const mockProposals: Proposal[] = [
                 line_items: [],
                 subtotal: 575000,
                 total: 575000,
+                currency: 'USD',
             },
             terms_and_conditions: [],
         },
@@ -171,6 +174,7 @@ export async function createProposalAction(data: Partial<Proposal>) {
                     line_items: [],
                     subtotal: 0,
                     total: 0,
+                    currency: 'USD',
                 },
                 terms_and_conditions: [],
             },
@@ -249,7 +253,9 @@ export async function markProposalWonAction(id: string) {
         
         const proposalIndex = mockProposals.findIndex(p => p.id === id);
         if (proposalIndex !== -1) {
-            mockProposals[proposalIndex].status = 'won';
+            mockProposals[proposalIndex].status = 'accepted';
+            mockProposals[proposalIndex].won = true;
+            mockProposals[proposalIndex].won_at = new Date().toISOString();
             mockProposals[proposalIndex].updated_at = new Date().toISOString();
         }
         
@@ -276,7 +282,8 @@ export async function markProposalLostAction(id: string) {
         
         const proposalIndex = mockProposals.findIndex(p => p.id === id);
         if (proposalIndex !== -1) {
-            mockProposals[proposalIndex].status = 'lost';
+            mockProposals[proposalIndex].status = 'rejected';
+            mockProposals[proposalIndex].won = false;
             mockProposals[proposalIndex].updated_at = new Date().toISOString();
         }
         
