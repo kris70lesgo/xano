@@ -256,4 +256,4 @@ For issues, questions, or feature requests, please contact the development team.
 
 ---
 
-Built with ❤️ using Next.js and AI technology
+Built with ❤️ using Next.js 
