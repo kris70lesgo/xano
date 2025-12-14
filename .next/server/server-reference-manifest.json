@@ -1,5 +1,44 @@
 {
   "node": {
+    "0091b30e3d4e54520f2936c3cbfe7f20936c2e1dd0": {
+      "workers": {
+        "app/(auth)/signup/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%7B%22id%22%3A%220091b30e3d4e54520f2936c3cbfe7f20936c2e1dd0%22%2C%22exportedName%22%3A%22logoutAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%2C%7B%22id%22%3A%2240dd11af5000fb6f4907b4773a85cc9db71164b84a%22%2C%22exportedName%22%3A%22signupAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%2C%7B%22id%22%3A%2260f5ea45d97cc1f56b6c5c02bea3acb431056b6858%22%2C%22exportedName%22%3A%22loginAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(auth)/signup/page": "action-browser"
+      },
+      "filename": "../C:\\Users\\LENOVO\\Documents\\xano\\src\\app\\actions\\auth.ts",
+      "exportedName": "logoutAction"
+    },
+    "40dd11af5000fb6f4907b4773a85cc9db71164b84a": {
+      "workers": {
+        "app/(auth)/signup/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%7B%22id%22%3A%220091b30e3d4e54520f2936c3cbfe7f20936c2e1dd0%22%2C%22exportedName%22%3A%22logoutAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%2C%7B%22id%22%3A%2240dd11af5000fb6f4907b4773a85cc9db71164b84a%22%2C%22exportedName%22%3A%22signupAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%2C%7B%22id%22%3A%2260f5ea45d97cc1f56b6c5c02bea3acb431056b6858%22%2C%22exportedName%22%3A%22loginAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(auth)/signup/page": "action-browser"
+      },
+      "filename": "../C:\\Users\\LENOVO\\Documents\\xano\\src\\app\\actions\\auth.ts",
+      "exportedName": "signupAction"
+    },
+    "60f5ea45d97cc1f56b6c5c02bea3acb431056b6858": {
+      "workers": {
+        "app/(auth)/signup/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%7B%22id%22%3A%220091b30e3d4e54520f2936c3cbfe7f20936c2e1dd0%22%2C%22exportedName%22%3A%22logoutAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%2C%7B%22id%22%3A%2240dd11af5000fb6f4907b4773a85cc9db71164b84a%22%2C%22exportedName%22%3A%22signupAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%2C%7B%22id%22%3A%2260f5ea45d97cc1f56b6c5c02bea3acb431056b6858%22%2C%22exportedName%22%3A%22loginAction%22%2C%22filename%22%3A%22..%2FC%3A%5C%5CUsers%5C%5CLENOVO%5C%5CDocuments%5C%5Cxano%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(auth)/signup/page": "action-browser"
+      },
+      "filename": "../C:\\Users\\LENOVO\\Documents\\xano\\src\\app\\actions\\auth.ts",
+      "exportedName": "loginAction"
+    },
     "005c50adef3b664caf0c0fb962c3c5df717650d95e": {
       "workers": {
         "app/dashboard/page": {

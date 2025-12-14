@@ -1,31 +1,60 @@
-import { 
-  RFQ, 
-  Proposal, 
-  Analytics, 
-  User, 
+import {
+  RFQ,
+  Proposal,
+  Analytics,
+  User,
   PricingRule,
   ApiResponse,
-  PaginatedResponse 
+  PaginatedResponse
 } from '@/types';
 
-const XANO_BASE_URL = process.env.XANO_BASE_URL || '';
+const XANO_BASE_URL = process.env.XANO_BASE_URL || 'https://x8ki-letl-twmt.n7.xano.io/api:328840';
+const XANO_AUTH_URL = process.env.XANO_AUTH_URL || 'https://x8ki-letl-twmt.n7.xano.io/api:325502';
 const XANO_API_KEY = process.env.XANO_API_KEY || '';
 
 class XanoClient {
   private baseUrl: string;
+  private authUrl: string;
   private apiKey: string;
 
   constructor() {
     this.baseUrl = XANO_BASE_URL;
+    this.authUrl = XANO_AUTH_URL;
     this.apiKey = XANO_API_KEY;
+  }
+
+  setToken(token: string) {
+    this.apiKey = token; // Temporary way to set user token for requests
+  }
+
+  async login(email: string, password: string): Promise<ApiResponse<{ authToken: string; user: User }>> {
+    return this.request('/auth/signin', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    }, this.authUrl);
+  }
+
+  async signup(data: Partial<User>): Promise<ApiResponse<{ authToken: string; user: User }>> {
+    return this.request('/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }, this.authUrl);
   }
 
   private async request<T>(
     endpoint: string,
-    options: RequestInit = {}
+    options: RequestInit = {},
+    baseUrl?: string
   ): Promise<ApiResponse<T>> {
     try {
-      const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      const url = baseUrl ? `${baseUrl}${endpoint}` : `${this.baseUrl}${endpoint}`;
+      console.log('🌐 Xano Request:', {
+        url,
+        method: options.method || 'GET',
+        body: options.body
+      });
+
+      const response = await fetch(url, {
         ...options,
         headers: {
           'Content-Type': 'application/json',
@@ -34,8 +63,15 @@ class XanoClient {
         },
       });
 
+      console.log('🌐 Xano Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok
+      });
+
       if (!response.ok) {
         const error = await response.json().catch(() => ({ message: 'Unknown error' }));
+        console.log('❌ Xano Error Response:', error);
         return {
           success: false,
           error: error.message || `HTTP ${response.status}`,
@@ -43,11 +79,13 @@ class XanoClient {
       }
 
       const data = await response.json();
+      console.log('✅ Xano Success Response:', data);
       return {
         success: true,
         data,
       };
     } catch (error) {
+      console.log('❌ Xano Network Error:', error);
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Network error',

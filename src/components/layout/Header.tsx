@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
         <div className="flex items-center gap-8">
           <Link href="/dashboard" className="flex items-center gap-2 group">
             <Zap className="w-6 h-6 text-primary fill-primary group-hover:rotate-12 transition-transform" />
-            <span className="text-xl font-serif font-bold text-dark">TenderFlow</span>
+            <span className="text-xl font-serif font-bold text-dark">Tendr</span>
           </Link>
 
           {/* Desktop Navigation */}

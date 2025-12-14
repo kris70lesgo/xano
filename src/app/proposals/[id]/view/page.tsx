@@ -54,12 +54,10 @@ export default function ClientProposalView() {
     const handleAccept = () => {
         setStatus('accepted');
         // Trigger confetti or API call here
-        alert('Thank you! The proposal has been accepted.');
     };
 
     const handleDecline = () => {
         setStatus('declined');
-        alert('Proposal declined. The contractor will be notified.');
     };
 
     return (
@@ -190,7 +188,7 @@ export default function ClientProposalView() {
                 )}
 
                 <div className="text-center text-gray-400 text-sm py-8">
-                    Powered by TenderFlow
+                    Powered by Tendr
                 </div>
             </div>
         </div>

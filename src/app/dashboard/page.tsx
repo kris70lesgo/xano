@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { toast, Toaster } from 'sonner';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import DashboardMetrics from '../../components/dashboard/DashboardMetrics';
 import PipelineBreakdown from '../../components/dashboard/PipelineBreakdown';
@@ -13,14 +12,14 @@ import { Plus, RefreshCw } from 'lucide-react';
 import { RFQ } from '../../types';
 import { getDashboardData, declineRFQAction, sendProposalAction } from '../actions/dashboard';
 
-
 export default function DashboardPage() {
+  const router = useRouter();
   const [rfqs, setRfqs] = useState<RFQ[]>([]);
   const [stats, setStats] = useState({
-    rfqs_received: 128,
-    ai_parsed: 104,
-    proposals_sent: 76,
-    win_rate: 32,
+    win_rate: 0,
+    revenue_this_month: 0,
+    time_saved_hours: 0, // Not currently from API, keeping default
+    proposals_sent: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -30,51 +29,44 @@ export default function DashboardPage() {
       const result = await getDashboardData();
       if (result.success && result.data) {
         setRfqs(result.data.recentRfqs);
-        // In a real app, I'd map the real API stats here. 
-        // For now, I'll keep the mocked stats that match the User's request to ensure the design matches the prompt.
-        // But if the user wanted real data, I'd uncomment the mapping logic.
-        /* 
         setStats(prev => ({
-            ...prev,
-            // map real data
+          ...prev,
+          win_rate: result.data.stats.win_rate,
+          revenue_this_month: result.data.stats.revenue_this_month,
+          proposals_sent: result.data.stats.proposals_sent,
+          // Map api stats to UI stats if names differ slightly or calculating derived
         }));
-        */
       }
       setLoading(false);
     }
     loadData();
   }, []);
 
-  const router = useRouter();
-
   const handleOpen = (id: string) => {
-    // Navigate to RFQ details (mock)
     console.log('Open RFQ:', id);
-    router.push(`/rfqs/${id}`);
+    // Navigate to detail page
   };
 
   const handleGenerate = (id: string) => {
-    toast.promise(
-      new Promise((resolve) => setTimeout(resolve, 1500)),
-      {
-        loading: `Generating proposal for RFQ #${id}...`,
-        success: () => {
-          router.push(`/proposals/new?rfq=${id}`);
-          return 'Proposal draft created!';
-        },
-        error: 'Failed to generate proposal'
-      }
-    );
+    console.log('Generate proposal for RFQ:', id);
+    // Navigate to generate page
   };
 
   const handleDownload = (id: string) => {
-    toast.success(`Downloading files for RFQ #${id}`);
+    console.log('Download RFQ:', id);
+    // Trigger download
   };
 
-  const handleNewRFQ = () => {
-    // Navigate to a new RFQ creation page or open a modal
-    // For now, let's assume we have a create page
-    router.push('/rfqs/new');
+  const handleDecline = async (id: string) => {
+    await declineRFQAction(id);
+    // Refresh data
+    window.location.reload();
+  };
+
+  const handleSend = async (id: string) => {
+    await sendProposalAction(id);
+    // Refresh data
+    window.location.reload();
   };
 
   if (loading) {
@@ -89,16 +81,16 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
-      {/* Title */}
+      {/* Page Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-dark mb-2">Dashboard</h1>
-          <p className="text-gray-500">Welcome back, John. Here's what's happening today.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-dark mb-2">Dashboard</h1>
+          <p className="text-gray-600">Manage your RFQs and proposals in one place</p>
         </div>
-        <Button
-          variant="primary"
-          className="hidden md:inline-flex shadow-lg shadow-primary/30"
-          onClick={handleNewRFQ}
+        <Button 
+          variant="primary" 
+          className="hidden md:inline-flex"
+          onClick={() => router.push('/rfqs/new')}
         >
           <Plus className="w-5 h-5 mr-2" />
           New RFQ
@@ -108,25 +100,19 @@ export default function DashboardPage() {
       {/* Metrics */}
       <DashboardMetrics stats={stats} />
 
-      {/* Middle Section: Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 h-[400px]">
-        <div className="lg:col-span-1 h-full">
-          <PipelineBreakdown />
-        </div>
-        <div className="lg:col-span-2 h-full">
-          <MonthlyPerformance />
-        </div>
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <PipelineBreakdown />
+        <MonthlyPerformance />
       </div>
 
-      {/* Bottom Section: Active RFQs Table */}
-      <div className="mb-8">
-        <ActiveRFQsTable
-          rfqs={rfqs}
-          onOpen={handleOpen}
-          onGenerate={handleGenerate}
-          onDownload={handleDownload}
-        />
-      </div>
+      {/* Active RFQs Table */}
+      <ActiveRFQsTable
+        rfqs={rfqs}
+        onOpen={handleOpen}
+        onGenerate={handleGenerate}
+        onDownload={handleDownload}
+      />
 
       {/* Mobile FAB */}
       <button className="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-50">

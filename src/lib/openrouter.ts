@@ -20,6 +20,12 @@ class OpenRouterClient {
 
   private async complete(messages: OpenRouterMessage[]): Promise<string> {
     try {
+      console.log('🤖 OpenRouter Request:', {
+        model: this.model,
+        apiKeyPresent: !!this.apiKey,
+        messagesCount: messages.length,
+      });
+
       const response = await fetch(`${this.baseUrl}/chat/completions`, {
         method: 'POST',
         headers: {
@@ -34,11 +40,22 @@ class OpenRouterClient {
         }),
       });
 
+      console.log('🤖 OpenRouter Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+      });
+
       if (!response.ok) {
-        throw new Error(`OpenRouter API error: ${response.statusText}`);
+        const errorData = await response.text();
+        console.error('❌ OpenRouter Error:', errorData);
+        throw new Error(`OpenRouter API error: ${response.statusText} - ${errorData}`);
       }
 
       const data = await response.json();
+      console.log('✅ OpenRouter Success:', {
+        hasContent: !!data.choices?.[0]?.message?.content,
+      });
       return data.choices[0]?.message?.content || '';
     } catch (error) {
       console.error('OpenRouter API error:', error);

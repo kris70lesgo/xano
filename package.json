@@ -1,5 +1,5 @@
 {
-  "name": "tenderflow",
+  "name": "tendr",
   "private": true,
   "version": "1.0.0",
   "description": "AI-powered proposal automation platform for contractors",
@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.556.0",
     "next": "^15.1.0",
     "react": "^19.2.1",
@@ -18,6 +19,7 @@
     "sonner": "^2.0.7"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.14.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

@@ -1,11 +1,8 @@
 {
-  "/page": "app/page.js",
+  "/api/parse-email/route": "app/api/parse-email/route.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/rfqs/[id]/page": "app/rfqs/[id]/page.js",
-  "/proposals/new/page": "app/proposals/new/page.js",
-  "/proposals/[id]/edit/page": "app/proposals/[id]/edit/page.js",
-  "/calendar/page": "app/calendar/page.js",
-  "/pricing/page": "app/pricing/page.js",
+  "/rfqs/new/page": "app/rfqs/new/page.js",
   "/proposals/page": "app/proposals/page.js",
-  "/settings/page": "app/settings/page.js"
+  "/proposals/[id]/edit/page": "app/proposals/[id]/edit/page.js"
 }
