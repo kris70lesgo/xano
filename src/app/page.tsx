@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import LogoTicker from '../components/LogoTicker';
 import Features from '../components/Features';
-
 import Process from '../components/Process';
 import Testimonials from '../components/Testimonials';
 import Pricing from '../components/Pricing';
@@ -18,7 +17,7 @@ export default function Home() {
       <Hero />
       <LogoTicker />
       <Features />
-
+      
       <Process />
       <Testimonials />
       <Pricing />

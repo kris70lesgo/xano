@@ -20,32 +20,83 @@ const mockProposals: Proposal[] = [
     {
         id: 'mock-proposal-1',
         rfq_id: 'mock-rfq-1',
-        title: 'Commercial Office Renovation Proposal',
+        user_id: 'mock-user-1',
         status: 'sent',
-        total_amount: 175000,
+        won: null,
+        draft_content: {
+            title: 'Commercial Office Renovation Proposal',
+            client_info: {
+                name: 'Tech Corp',
+                email: 'contact@techcorp.com',
+            },
+            project_overview: 'Full proposal for office renovation including materials and labor',
+            scope_of_work: ['Demolition', 'Framing', 'Electrical', 'Finishing'],
+            timeline: {
+                estimated_duration: '8 weeks',
+            },
+            pricing: {
+                line_items: [],
+                subtotal: 175000,
+                total: 175000,
+            },
+            terms_and_conditions: [],
+        },
         created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
         updated_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-        content: 'Full proposal for office renovation including materials and labor',
     },
     {
         id: 'mock-proposal-2',
         rfq_id: 'mock-rfq-2',
-        title: 'Residential Construction Proposal',
+        user_id: 'mock-user-1',
         status: 'draft',
-        total_amount: 385000,
+        won: null,
+        draft_content: {
+            title: 'Residential Construction Proposal',
+            client_info: {
+                name: 'John Smith',
+                email: 'john@example.com',
+            },
+            project_overview: 'Comprehensive proposal for single-family home construction',
+            scope_of_work: ['Foundation', 'Framing', 'Roofing', 'Interior'],
+            timeline: {
+                estimated_duration: '16 weeks',
+            },
+            pricing: {
+                line_items: [],
+                subtotal: 385000,
+                total: 385000,
+            },
+            terms_and_conditions: [],
+        },
         created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
         updated_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-        content: 'Comprehensive proposal for single-family home construction',
     },
     {
         id: 'mock-proposal-3',
         rfq_id: 'mock-rfq-3',
-        title: 'Warehouse Expansion Proposal',
-        status: 'won',
-        total_amount: 575000,
+        user_id: 'mock-user-1',
+        status: 'sent',
+        won: true,
+        draft_content: {
+            title: 'Warehouse Expansion Proposal',
+            client_info: {
+                name: 'Logistics Inc',
+                email: 'warehouse@logistics.com',
+            },
+            project_overview: 'Detailed proposal for warehouse expansion project',
+            scope_of_work: ['Site Prep', 'Steel Structure', 'Loading Docks', 'HVAC'],
+            timeline: {
+                estimated_duration: '20 weeks',
+            },
+            pricing: {
+                line_items: [],
+                subtotal: 575000,
+                total: 575000,
+            },
+            terms_and_conditions: [],
+        },
         created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
         updated_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-        content: 'Detailed proposal for warehouse expansion project',
     },
 ];
 
@@ -102,12 +153,29 @@ export async function createProposalAction(data: Partial<Proposal>) {
         const newProposal: Proposal = {
             id: `mock-proposal-${Date.now()}`,
             rfq_id: data.rfq_id || 'mock-rfq-new',
-            title: data.title || 'New Proposal',
+            user_id: data.user_id || 'mock-user-1',
             status: data.status || 'draft',
-            total_amount: data.total_amount || 0,
+            won: null,
+            draft_content: data.draft_content || {
+                title: 'New Proposal',
+                client_info: {
+                    name: 'New Client',
+                    email: 'client@example.com',
+                },
+                project_overview: '',
+                scope_of_work: [],
+                timeline: {
+                    estimated_duration: 'TBD',
+                },
+                pricing: {
+                    line_items: [],
+                    subtotal: 0,
+                    total: 0,
+                },
+                terms_and_conditions: [],
+            },
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
-            content: data.content || '',
         };
         
         mockProposals.push(newProposal);
