@@ -16,10 +16,10 @@ export default function DashboardPage() {
   const router = useRouter();
   const [rfqs, setRfqs] = useState<RFQ[]>([]);
   const [stats, setStats] = useState({
-    rfqs_received: 0,
-    ai_parsed: 0,
-    proposals_sent: 0,
     win_rate: 0,
+    revenue_this_month: 0,
+    time_saved_hours: 0,
+    proposals_sent: 0,
   });
   const [loading, setLoading] = useState(true);
 
